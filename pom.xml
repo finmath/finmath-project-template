@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.finmath</groupId>
+  <artifactId>finmath-project-template</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  	<packaging>jar</packaging>
+  
+  <name>Finmath Project</name>
+  <description>This is a template. Please adjust artifact-id, name and description.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<src.main.java.dir>src/main/java</src.main.java.dir>
+		<src.test.java.dir>src/test/java</src.test.java.dir>
+		<java.version>17</java.version>
+		<junit.version>5.6.2</junit.version>
+		<!-- dependencies -->
+		<finmath-lib.version>6.0.19</finmath-lib.version>
+		<finmath-plot.version>0.5.0</finmath-plot.version>
+		<apache.commons-csv.version>1.10.0</apache.commons-csv.version>
+		<dl4j.version>1.0.0-M2</dl4j.version>
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+
+	<dependencies>
+		
+		<!-- finmath-lib -->
+		<dependency>
+			<groupId>net.finmath</groupId>
+			<artifactId>finmath-lib</artifactId>
+			<version>${finmath-lib.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.finmath</groupId>
+			<artifactId>finmath-lib-plot-extensions</artifactId>
+			<version>${finmath-plot.version}</version>
+		</dependency>
+
+		<!-- CSV -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>${apache.commons-csv.version}</version>
+		</dependency>
+
+		<!-- DL4J -->
+		<dependency>
+			<groupId>org.deeplearning4j</groupId>
+			<artifactId>deeplearning4j-core</artifactId>
+			<version>${dl4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.deeplearning4j</groupId>
+			<artifactId>deeplearning4j-ui</artifactId>
+			<version>${dl4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.nd4j</groupId>
+			<artifactId>nd4j-native-platform</artifactId>
+			<version>1.0.0-M2.1</version>
+		</dependency>
+
+		<!-- Unit Testing -->
+		
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<defaultGoal>clean install jshell:run</defaultGoal>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<sourceDirectory>${src.main.java.dir}</sourceDirectory>
+		<testSourceDirectory>${src.test.java.dir}</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<release>${java.version}</release>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<forkCount>1</forkCount>
+					<reuseForks>false</reuseForks>
+					<argLine>-mx6G</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<scm>
+		<url>https://gitlab.com/finmath/finmath-climate-nonlinear.git</url>
+		<connection>scm:git:https://gitlab.com/finmath/finmath-climate-nonlinear.git</connection>
+		<developerConnection>scm:git:https://gitlab.com/finmath/finmath-climate-nonlinear.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+</project>
